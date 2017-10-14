@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="6a68cfc69d6e43c0be722525a74330c5" Name="Diagram1" DisplayType="false" ShowGrid="true" ZoomLevel="74" >
+        <EntityTypeShape EntityType="APIEntityModel.TMDB" Width="1.5" PointX="3.125" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="APIEntityModel.YTS" Width="1.5" PointX="7.75" PointY="0.625" />
+        <EntityTypeShape EntityType="APIEntityModel.Movies" Width="1.5" PointX="6.875" PointY="7.875" />
+        <EntityTypeShape EntityType="APIEntityModel.Local" Width="1.5" PointX="12.875" PointY="0.875" />
+        <EntityTypeShape EntityType="APIEntityModel.torrents" Width="1.5" PointX="9.75" PointY="0.625" />
+        <EntityTypeShape EntityType="APIEntityModel.TMDBgenres" Width="1.5" PointX="0.75" PointY="0.5" />
+        <AssociationConnector Association="APIEntityModel.MoviesLocal" />
+        <AssociationConnector Association="APIEntityModel.MoviesTMDB" />
+        <AssociationConnector Association="APIEntityModel.MoviesYTS" />
+        <AssociationConnector Association="APIEntityModel.YTStorrents" />
+        <EntityTypeShape EntityType="APIEntityModel.production_companies" Width="1.5" PointX="0.75" PointY="3" />
+        <AssociationConnector Association="APIEntityModel.TMDBproduction_companies" />
+        <AssociationConnector Association="APIEntityModel.TMDBTMDBgenres" />
+        <EntityTypeShape EntityType="APIEntityModel.YTSgenres" Width="1.5" PointX="5.25" PointY="0.625" />
+        <AssociationConnector Association="APIEntityModel.YTSYTSgenres" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

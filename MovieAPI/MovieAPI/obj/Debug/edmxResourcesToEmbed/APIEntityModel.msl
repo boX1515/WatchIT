@@ -1,0 +1,180 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="APIEntityModelStoreContainer" CdmEntityContainer="APIEntityModelContainer">
+    <EntitySetMapping Name="TMDBSet">
+      <EntityTypeMapping TypeName="IsTypeOf(APIEntityModel.TMDB)">
+        <MappingFragment StoreEntitySet="TMDBSet">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="adult" ColumnName="adult" />
+          <ScalarProperty Name="backdrop_path" ColumnName="backdrop_path" />
+          <ScalarProperty Name="budget" ColumnName="budget" />
+          <ScalarProperty Name="homepage" ColumnName="homepage" />
+          <ScalarProperty Name="imdb_id" ColumnName="imdb_id" />
+          <ScalarProperty Name="original_title" ColumnName="original_title" />
+          <ScalarProperty Name="overview" ColumnName="overview" />
+          <ScalarProperty Name="popularity" ColumnName="popularity" />
+          <ScalarProperty Name="poster_path" ColumnName="poster_path" />
+          <ScalarProperty Name="release_date" ColumnName="release_date" />
+          <ScalarProperty Name="revenue" ColumnName="revenue" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="tagline" ColumnName="tagline" />
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="vote_average" ColumnName="vote_average" />
+          <ScalarProperty Name="vote_count" ColumnName="vote_count" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MoviesSet">
+      <EntityTypeMapping TypeName="IsTypeOf(APIEntityModel.Movies)">
+        <MappingFragment StoreEntitySet="MoviesSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Guid" ColumnName="Guid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LocalSet">
+      <EntityTypeMapping TypeName="IsTypeOf(APIEntityModel.Local)">
+        <MappingFragment StoreEntitySet="LocalSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Year" ColumnName="Year" />
+          <ScalarProperty Name="FileName" ColumnName="FileName" />
+          <ScalarProperty Name="Location" ColumnName="Location" />
+          <ScalarProperty Name="Extension" ColumnName="Extension" />
+          <ScalarProperty Name="Subtitle" ColumnName="Subtitle" />
+          <ScalarProperty Name="Pixelsize" ColumnName="Pixelsize" />
+          <ScalarProperty Name="Format" ColumnName="Format" />
+          <ScalarProperty Name="Formatsize" ColumnName="Formatsize" />
+          <ScalarProperty Name="Group" ColumnName="Group" />
+          <ScalarProperty Name="Error" ColumnName="Error" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="torrentsSet">
+      <EntityTypeMapping TypeName="IsTypeOf(APIEntityModel.torrents)">
+        <MappingFragment StoreEntitySet="torrentsSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="url" ColumnName="url" />
+          <ScalarProperty Name="hash" ColumnName="hash" />
+          <ScalarProperty Name="quality" ColumnName="quality" />
+          <ScalarProperty Name="seeds" ColumnName="seeds" />
+          <ScalarProperty Name="peers" ColumnName="peers" />
+          <ScalarProperty Name="size" ColumnName="size" />
+          <ScalarProperty Name="size_bytes" ColumnName="size_bytes" />
+          <ScalarProperty Name="date_uploaded" ColumnName="date_uploaded" />
+          <ScalarProperty Name="date_uploaded_unix" ColumnName="date_uploaded_unix" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TMDBgenresSet">
+      <EntityTypeMapping TypeName="IsTypeOf(APIEntityModel.TMDBgenres)">
+        <MappingFragment StoreEntitySet="TMDBgenresSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="YTSSet">
+      <EntityTypeMapping TypeName="IsTypeOf(APIEntityModel.YTS)">
+        <MappingFragment StoreEntitySet="YTSSet">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="url" ColumnName="url" />
+          <ScalarProperty Name="imdb_code" ColumnName="imdb_code" />
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="title_english" ColumnName="title_english" />
+          <ScalarProperty Name="title_long" ColumnName="title_long" />
+          <ScalarProperty Name="slug" ColumnName="slug" />
+          <ScalarProperty Name="year" ColumnName="year" />
+          <ScalarProperty Name="rating" ColumnName="rating" />
+          <ScalarProperty Name="runtime" ColumnName="runtime" />
+          <ScalarProperty Name="summary" ColumnName="summary" />
+          <ScalarProperty Name="description_full" ColumnName="description_full" />
+          <ScalarProperty Name="synopsis" ColumnName="synopsis" />
+          <ScalarProperty Name="yt_trailer_code" ColumnName="yt_trailer_code" />
+          <ScalarProperty Name="language" ColumnName="language" />
+          <ScalarProperty Name="mpa_rating" ColumnName="mpa_rating" />
+          <ScalarProperty Name="background_image" ColumnName="background_image" />
+          <ScalarProperty Name="background_image_original" ColumnName="background_image_original" />
+          <ScalarProperty Name="small_cover_image" ColumnName="small_cover_image" />
+          <ScalarProperty Name="medium_cover_image" ColumnName="medium_cover_image" />
+          <ScalarProperty Name="large_cover_image" ColumnName="large_cover_image" />
+          <ScalarProperty Name="state" ColumnName="state" />
+          <ScalarProperty Name="date_uploaded" ColumnName="date_uploaded" />
+          <ScalarProperty Name="date_uploaded_unix" ColumnName="date_uploaded_unix" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="production_companiesSet">
+      <EntityTypeMapping TypeName="IsTypeOf(APIEntityModel.production_companies)">
+        <MappingFragment StoreEntitySet="production_companiesSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="YTSgenresSet">
+      <EntityTypeMapping TypeName="IsTypeOf(APIEntityModel.YTSgenres)">
+        <MappingFragment StoreEntitySet="YTSgenresSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="MoviesLocal" TypeName="APIEntityModel.MoviesLocal" StoreEntitySet="LocalSet">
+      <EndProperty Name="Movies">
+        <ScalarProperty Name="Id" ColumnName="MoviesLocal_Local_Id" />
+      </EndProperty>
+      <EndProperty Name="Local">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="MoviesTMDB" TypeName="APIEntityModel.MoviesTMDB" StoreEntitySet="TMDBSet">
+      <EndProperty Name="Movies">
+        <ScalarProperty Name="Id" ColumnName="MoviesTMDB_TMDB_Id" />
+      </EndProperty>
+      <EndProperty Name="TMDB">
+        <ScalarProperty Name="id" ColumnName="id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="MoviesYTS" TypeName="APIEntityModel.MoviesYTS" StoreEntitySet="YTSSet">
+      <EndProperty Name="Movies">
+        <ScalarProperty Name="Id" ColumnName="MoviesYTS_YTS_Id" />
+      </EndProperty>
+      <EndProperty Name="YTS">
+        <ScalarProperty Name="id" ColumnName="id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="YTStorrents" TypeName="APIEntityModel.YTStorrents" StoreEntitySet="torrentsSet">
+      <EndProperty Name="YTS">
+        <ScalarProperty Name="id" ColumnName="YTStorrents_torrents_id" />
+      </EndProperty>
+      <EndProperty Name="torrents">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="TMDBproduction_companies" TypeName="APIEntityModel.TMDBproduction_companies" StoreEntitySet="production_companiesSet">
+      <EndProperty Name="TMDB">
+        <ScalarProperty Name="id" ColumnName="TMDBproduction_companies_production_companies_id" />
+      </EndProperty>
+      <EndProperty Name="production_companies">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="TMDBTMDBgenres" TypeName="APIEntityModel.TMDBTMDBgenres" StoreEntitySet="TMDBgenresSet">
+      <EndProperty Name="TMDB">
+        <ScalarProperty Name="id" ColumnName="TMDBTMDBgenres_TMDBgenres_id" />
+      </EndProperty>
+      <EndProperty Name="TMDBgenres">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="YTSYTSgenres" TypeName="APIEntityModel.YTSYTSgenres" StoreEntitySet="YTSgenresSet">
+      <EndProperty Name="YTS">
+        <ScalarProperty Name="id" ColumnName="YTSYTSgenres_YTSgenres_id" />
+      </EndProperty>
+      <EndProperty Name="YTSgenres">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>

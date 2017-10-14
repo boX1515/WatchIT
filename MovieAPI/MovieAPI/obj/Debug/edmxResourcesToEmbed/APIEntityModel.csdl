@@ -1,0 +1,187 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="APIEntityModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+  <EntityContainer Name="APIEntityModelContainer" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="TMDBSet" EntityType="APIEntityModel.TMDB" />
+    <EntitySet Name="MoviesSet" EntityType="APIEntityModel.Movies" />
+    <EntitySet Name="LocalSet" EntityType="APIEntityModel.Local" />
+    <EntitySet Name="torrentsSet" EntityType="APIEntityModel.torrents" />
+    <EntitySet Name="TMDBgenresSet" EntityType="APIEntityModel.TMDBgenres" />
+    <AssociationSet Name="MoviesLocal" Association="APIEntityModel.MoviesLocal">
+      <End Role="Movies" EntitySet="MoviesSet" />
+      <End Role="Local" EntitySet="LocalSet" />
+    </AssociationSet>
+    <AssociationSet Name="MoviesTMDB" Association="APIEntityModel.MoviesTMDB">
+      <End Role="Movies" EntitySet="MoviesSet" />
+      <End Role="TMDB" EntitySet="TMDBSet" />
+    </AssociationSet>
+    <AssociationSet Name="MoviesYTS" Association="APIEntityModel.MoviesYTS">
+      <End Role="Movies" EntitySet="MoviesSet" />
+      <End Role="YTS" EntitySet="YTSSet" />
+    </AssociationSet>
+    <EntitySet Name="YTSSet" EntityType="APIEntityModel.YTS" />
+    <AssociationSet Name="YTStorrents" Association="APIEntityModel.YTStorrents">
+      <End Role="YTS" EntitySet="YTSSet" />
+      <End Role="torrents" EntitySet="torrentsSet" />
+    </AssociationSet>
+    <EntitySet Name="production_companiesSet" EntityType="APIEntityModel.production_companies" />
+    <AssociationSet Name="TMDBproduction_companies" Association="APIEntityModel.TMDBproduction_companies">
+      <End Role="TMDB" EntitySet="TMDBSet" />
+      <End Role="production_companies" EntitySet="production_companiesSet" />
+    </AssociationSet>
+    <AssociationSet Name="TMDBTMDBgenres" Association="APIEntityModel.TMDBTMDBgenres">
+      <End Role="TMDB" EntitySet="TMDBSet" />
+      <End Role="TMDBgenres" EntitySet="TMDBgenresSet" />
+    </AssociationSet>
+    <EntitySet Name="YTSgenresSet" EntityType="APIEntityModel.YTSgenres" />
+    <AssociationSet Name="YTSYTSgenres" Association="APIEntityModel.YTSYTSgenres">
+      <End Role="YTS" EntitySet="YTSSet" />
+      <End Role="YTSgenres" EntitySet="YTSgenresSet" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="TMDB">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="adult" Type="Boolean" Nullable="true" />
+    <Property Name="backdrop_path" Type="String" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="budget" Type="String" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="homepage" Type="String" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="imdb_id" Type="String" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="original_title" Type="String" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="overview" Type="String" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="popularity" Type="String" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="poster_path" Type="String" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="release_date" Type="String" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="revenue" Type="String" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="status" Type="String" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="tagline" Type="String" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="title" Type="String" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="vote_average" Type="String" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="vote_count" Type="String" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="production_companies" Relationship="APIEntityModel.TMDBproduction_companies" FromRole="TMDB" ToRole="production_companies" />
+    <NavigationProperty Name="TMDBgenres" Relationship="APIEntityModel.TMDBTMDBgenres" FromRole="TMDB" ToRole="TMDBgenres" />
+  </EntityType>
+  <EntityType Name="YTS">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="url" Type="String" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="imdb_code" Type="String" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="title" Type="String" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="title_english" Type="String" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="title_long" Type="String" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="slug" Type="String" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="year" Type="Int32" Nullable="true" />
+    <Property Name="rating" Type="Double" Nullable="true" />
+    <Property Name="runtime" Type="Int32" Nullable="true" />
+    <Property Name="summary" Type="String" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="description_full" Type="String" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="synopsis" Type="String" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="yt_trailer_code" Type="String" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="language" Type="String" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="mpa_rating" Type="String" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="background_image" Type="String" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="background_image_original" Type="String" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="small_cover_image" Type="String" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="medium_cover_image" Type="String" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="large_cover_image" Type="String" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="state" Type="String" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="date_uploaded" Type="String" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="date_uploaded_unix" Type="Int64" Nullable="true" />
+    <NavigationProperty Name="torrents" Relationship="APIEntityModel.YTStorrents" FromRole="YTS" ToRole="torrents" />
+    <NavigationProperty Name="YTSgenres" Relationship="APIEntityModel.YTSYTSgenres" FromRole="YTS" ToRole="YTSgenres" />
+  </EntityType>
+  <EntityType Name="Movies">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Guid" Type="String" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="Local" Relationship="APIEntityModel.MoviesLocal" FromRole="Movies" ToRole="Local" />
+    <NavigationProperty Name="TMDB" Relationship="APIEntityModel.MoviesTMDB" FromRole="Movies" ToRole="TMDB" />
+    <NavigationProperty Name="YTS" Relationship="APIEntityModel.MoviesYTS" FromRole="Movies" ToRole="YTS" />
+  </EntityType>
+  <EntityType Name="Local">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" Nullable="true" />
+    <Property Name="Year" Type="String" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="FileName" Type="String" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="Location" Type="String" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="Extension" Type="String" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="Subtitle" Type="String" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="Pixelsize" Type="String" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="Format" Type="String" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="Formatsize" Type="String" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="Group" Type="String" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="Error" Type="String" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="torrents">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="url" Type="String" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="hash" Type="String" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="quality" Type="String" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="seeds" Type="Int64" Nullable="true" />
+    <Property Name="peers" Type="Int64" Nullable="true" />
+    <Property Name="size" Type="String" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="size_bytes" Type="Int64" Nullable="true" />
+    <Property Name="date_uploaded" Type="String" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="date_uploaded_unix" Type="Int64" Nullable="true" />
+  </EntityType>
+  <EntityType Name="TMDBgenres">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+  </EntityType>
+  <Association Name="MoviesLocal">
+    <End Type="APIEntityModel.Movies" Role="Movies" Multiplicity="1" />
+    <End Type="APIEntityModel.Local" Role="Local" Multiplicity="0..1" />
+  </Association>
+  <Association Name="MoviesTMDB">
+    <End Type="APIEntityModel.Movies" Role="Movies" Multiplicity="1" />
+    <End Type="APIEntityModel.TMDB" Role="TMDB" Multiplicity="0..1" />
+  </Association>
+  <Association Name="MoviesYTS">
+    <End Type="APIEntityModel.Movies" Role="Movies" Multiplicity="1" />
+    <End Type="APIEntityModel.YTS" Role="YTS" Multiplicity="0..1" />
+  </Association>
+  <Association Name="YTStorrents">
+    <End Type="APIEntityModel.YTS" Role="YTS" Multiplicity="1" />
+    <End Type="APIEntityModel.torrents" Role="torrents" Multiplicity="*" />
+  </Association>
+  <EntityType Name="production_companies">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="true" />
+  </EntityType>
+  <Association Name="TMDBproduction_companies">
+    <End Type="APIEntityModel.TMDB" Role="TMDB" Multiplicity="1" />
+    <End Type="APIEntityModel.production_companies" Role="production_companies" Multiplicity="*" />
+  </Association>
+  <Association Name="TMDBTMDBgenres">
+    <End Type="APIEntityModel.TMDB" Role="TMDB" Multiplicity="1" />
+    <End Type="APIEntityModel.TMDBgenres" Role="TMDBgenres" Multiplicity="*" />
+  </Association>
+  <EntityType Name="YTSgenres">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="true" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <Association Name="YTSYTSgenres">
+    <End Type="APIEntityModel.YTS" Role="YTS" Multiplicity="1" />
+    <End Type="APIEntityModel.YTSgenres" Role="YTSgenres" Multiplicity="*" />
+  </Association>
+</Schema>
