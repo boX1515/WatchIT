@@ -4,11 +4,19 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using MovieAPI.Components.Database.Controlers;
+using System.Threading.Tasks;
 
 namespace MovieAPI.Controllers
 {
     public class MovieController : ApiController
     {
+        public async Task<Movies[]> Get(string name)
+        {
+            var data = await Movie.ByNameAsync(name);
+            return data;
+        }
+
         // GET: api/Movie
         public IEnumerable<string> Get()
         {

@@ -120,6 +120,44 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="LogSet">
+      <EntityTypeMapping TypeName="IsTypeOf(APIEntityModel.Log)">
+        <MappingFragment StoreEntitySet="LogSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="DateTime" ColumnName="DateTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LogErrorSet">
+      <EntityTypeMapping TypeName="IsTypeOf(APIEntityModel.LogError)">
+        <MappingFragment StoreEntitySet="LogErrorSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="Error" ColumnName="Error" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LogSuccessSet">
+      <EntityTypeMapping TypeName="IsTypeOf(APIEntityModel.LogSuccess)">
+        <MappingFragment StoreEntitySet="LogSuccessSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LogInfoSet">
+      <EntityTypeMapping TypeName="IsTypeOf(APIEntityModel.LogInfo)">
+        <MappingFragment StoreEntitySet="LogInfoSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="Info" ColumnName="Info" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <AssociationSetMapping Name="MoviesLocal" TypeName="APIEntityModel.MoviesLocal" StoreEntitySet="LocalSet">
       <EndProperty Name="Movies">
         <ScalarProperty Name="Id" ColumnName="MoviesLocal_Local_Id" />
@@ -173,6 +211,38 @@
         <ScalarProperty Name="id" ColumnName="YTSYTSgenres_YTSgenres_id" />
       </EndProperty>
       <EndProperty Name="YTSgenres">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="MoviesLog" TypeName="APIEntityModel.MoviesLog" StoreEntitySet="LogSet">
+      <EndProperty Name="Movies">
+        <ScalarProperty Name="Id" ColumnName="Movies_Id" />
+      </EndProperty>
+      <EndProperty Name="Log">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="LogLogError" TypeName="APIEntityModel.LogLogError" StoreEntitySet="LogErrorSet">
+      <EndProperty Name="Log">
+        <ScalarProperty Name="Id" ColumnName="Log_Id" />
+      </EndProperty>
+      <EndProperty Name="LogError">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="LogLogSuccess" TypeName="APIEntityModel.LogLogSuccess" StoreEntitySet="LogSuccessSet">
+      <EndProperty Name="Log">
+        <ScalarProperty Name="Id" ColumnName="Log_Id" />
+      </EndProperty>
+      <EndProperty Name="LogSuccess">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="LogInfoLog" TypeName="APIEntityModel.LogInfoLog" StoreEntitySet="LogInfoSet">
+      <EndProperty Name="Log">
+        <ScalarProperty Name="Id" ColumnName="Log_Id" />
+      </EndProperty>
+      <EndProperty Name="LogInfo">
         <ScalarProperty Name="Id" ColumnName="Id" />
       </EndProperty>
     </AssociationSetMapping>

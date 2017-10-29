@@ -43,11 +43,10 @@ namespace MovieAPI.Components.ExternalAPI
 
         internal async Task WriteLog(int state, Movies m)
         {
-            Parser p = new Parser();
             if(state > 1)
-                await p.Write(m, string.Format("Movie {0} was added succesfully", m.Local.Name), Parser.LogStatus.Success );
+                await Parser.WriteMovieSuccess(new LogSuccess() { Description = string.Format("Movie {0} was added succesfully", m.Local.Name), Status = "Movie was added to db", Type = "Adding movie to db" },m);
 
-                await p.Write(m, string.Format("Movie {0} was added but with errors", m.Local.Name), Parser.LogStatus.Error );
+                await Parser.WriteMovieError( new LogError() { Description = string.Format("Movie {0} was added but with errors", m.Local.Name) , Error = "Movie was not added",Type = "Adding movie to db error"},m);
 
         }
 

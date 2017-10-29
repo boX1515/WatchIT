@@ -9,6 +9,10 @@
     <EntitySet Name="YTSSet" EntityType="APIEntityModel.Store.YTSSet" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="production_companiesSet" EntityType="APIEntityModel.Store.production_companiesSet" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="YTSgenresSet" EntityType="APIEntityModel.Store.YTSgenresSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="LogSet" EntityType="APIEntityModel.Store.LogSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="LogErrorSet" EntityType="APIEntityModel.Store.LogErrorSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="LogSuccessSet" EntityType="APIEntityModel.Store.LogSuccessSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="LogInfoSet" EntityType="APIEntityModel.Store.LogInfoSet" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="MoviesLocal" Association="APIEntityModel.Store.MoviesLocal">
       <End Role="Movies" EntitySet="MoviesSet" />
       <End Role="Local" EntitySet="LocalSet" />
@@ -36,6 +40,22 @@
     <AssociationSet Name="YTSYTSgenres" Association="APIEntityModel.Store.YTSYTSgenres">
       <End Role="YTS" EntitySet="YTSSet" />
       <End Role="YTSgenres" EntitySet="YTSgenresSet" />
+    </AssociationSet>
+    <AssociationSet Name="MoviesLog" Association="APIEntityModel.Store.MoviesLog">
+      <End Role="Movies" EntitySet="MoviesSet" />
+      <End Role="Log" EntitySet="LogSet" />
+    </AssociationSet>
+    <AssociationSet Name="LogLogError" Association="APIEntityModel.Store.LogLogError">
+      <End Role="Log" EntitySet="LogSet" />
+      <End Role="LogError" EntitySet="LogErrorSet" />
+    </AssociationSet>
+    <AssociationSet Name="LogLogSuccess" Association="APIEntityModel.Store.LogLogSuccess">
+      <End Role="Log" EntitySet="LogSet" />
+      <End Role="LogSuccess" EntitySet="LogSuccessSet" />
+    </AssociationSet>
+    <AssociationSet Name="LogInfoLog" Association="APIEntityModel.Store.LogInfoLog">
+      <End Role="LogInfo" EntitySet="LogInfoSet" />
+      <End Role="Log" EntitySet="LogSet" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="TMDBSet">
@@ -156,6 +176,44 @@
     <Property Name="Name" Type="nvarchar(max)" Nullable="true" />
     <Property Name="YTSYTSgenres_YTSgenres_id" Type="int" Nullable="false" />
   </EntityType>
+  <EntityType Name="LogSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DateTime" Type="datetime" Nullable="false" />
+    <Property Name="Movies_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="LogErrorSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Type" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Error" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Log_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="LogSuccessSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Type" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Status" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Log_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="LogInfoSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Type" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Info" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Log_Id" Type="int" Nullable="false" />
+  </EntityType>
   <Association Name="MoviesLocal">
     <End Role="Movies" Type="APIEntityModel.Store.MoviesSet" Multiplicity="1" />
     <End Role="Local" Type="APIEntityModel.Store.LocalSet" Multiplicity="*" />
@@ -237,6 +295,54 @@
       </Principal>
       <Dependent Role="YTSgenres">
         <PropertyRef Name="YTSYTSgenres_YTSgenres_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="MoviesLog">
+    <End Role="Movies" Type="APIEntityModel.Store.MoviesSet" Multiplicity="1" />
+    <End Role="Log" Type="APIEntityModel.Store.LogSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Movies">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Log">
+        <PropertyRef Name="Movies_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="LogLogError">
+    <End Role="Log" Type="APIEntityModel.Store.LogSet" Multiplicity="1" />
+    <End Role="LogError" Type="APIEntityModel.Store.LogErrorSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Log">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="LogError">
+        <PropertyRef Name="Log_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="LogLogSuccess">
+    <End Role="Log" Type="APIEntityModel.Store.LogSet" Multiplicity="1" />
+    <End Role="LogSuccess" Type="APIEntityModel.Store.LogSuccessSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Log">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="LogSuccess">
+        <PropertyRef Name="Log_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="LogInfoLog">
+    <End Role="LogInfo" Type="APIEntityModel.Store.LogInfoSet" Multiplicity="*" />
+    <End Role="Log" Type="APIEntityModel.Store.LogSet" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Log">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="LogInfo">
+        <PropertyRef Name="Log_Id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 10/06/2017 18:50:42
--- Generated from EDMX file: K:\API\MovieAPI\MovieAPI\APIEntityModel.edmx
+-- Date Created: 10/25/2017 21:07:57
+-- Generated from EDMX file: K:\API\WatchIT\MovieAPI\MovieAPI\APIEntityModel.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
@@ -29,17 +29,26 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_YTStorrents]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[torrentsSet] DROP CONSTRAINT [FK_YTStorrents];
 GO
-IF OBJECT_ID(N'[dbo].[FK_TMDBgenres]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[genresSet] DROP CONSTRAINT [FK_TMDBgenres];
-GO
 IF OBJECT_ID(N'[dbo].[FK_TMDBproduction_companies]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[production_companiesSet] DROP CONSTRAINT [FK_TMDBproduction_companies];
 GO
-IF OBJECT_ID(N'[dbo].[FK_YTSgenres]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[genresSet] DROP CONSTRAINT [FK_YTSgenres];
+IF OBJECT_ID(N'[dbo].[FK_TMDBTMDBgenres]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[TMDBgenresSet] DROP CONSTRAINT [FK_TMDBTMDBgenres];
 GO
-IF OBJECT_ID(N'[dbo].[FK_YTSgenres1]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[genresSet] DROP CONSTRAINT [FK_YTSgenres1];
+IF OBJECT_ID(N'[dbo].[FK_YTSYTSgenres]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[YTSgenresSet] DROP CONSTRAINT [FK_YTSYTSgenres];
+GO
+IF OBJECT_ID(N'[dbo].[FK_MoviesLog]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[LogSet] DROP CONSTRAINT [FK_MoviesLog];
+GO
+IF OBJECT_ID(N'[dbo].[FK_LogLogError]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[LogErrorSet] DROP CONSTRAINT [FK_LogLogError];
+GO
+IF OBJECT_ID(N'[dbo].[FK_LogLogSuccess]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[LogSuccessSet] DROP CONSTRAINT [FK_LogLogSuccess];
+GO
+IF OBJECT_ID(N'[dbo].[FK_LogInfoLog]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[LogInfoSet] DROP CONSTRAINT [FK_LogInfoLog];
 GO
 
 -- --------------------------------------------------
@@ -58,14 +67,29 @@ GO
 IF OBJECT_ID(N'[dbo].[torrentsSet]', 'U') IS NOT NULL
     DROP TABLE [dbo].[torrentsSet];
 GO
-IF OBJECT_ID(N'[dbo].[genresSet]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[genresSet];
+IF OBJECT_ID(N'[dbo].[TMDBgenresSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[TMDBgenresSet];
 GO
 IF OBJECT_ID(N'[dbo].[YTSSet]', 'U') IS NOT NULL
     DROP TABLE [dbo].[YTSSet];
 GO
 IF OBJECT_ID(N'[dbo].[production_companiesSet]', 'U') IS NOT NULL
     DROP TABLE [dbo].[production_companiesSet];
+GO
+IF OBJECT_ID(N'[dbo].[YTSgenresSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[YTSgenresSet];
+GO
+IF OBJECT_ID(N'[dbo].[LogSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[LogSet];
+GO
+IF OBJECT_ID(N'[dbo].[LogErrorSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[LogErrorSet];
+GO
+IF OBJECT_ID(N'[dbo].[LogSuccessSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[LogSuccessSet];
+GO
+IF OBJECT_ID(N'[dbo].[LogInfoSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[LogInfoSet];
 GO
 
 -- --------------------------------------------------
@@ -190,6 +214,44 @@ CREATE TABLE [dbo].[YTSgenresSet] (
 );
 GO
 
+-- Creating table 'LogSet'
+CREATE TABLE [dbo].[LogSet] (
+    [Id] int IDENTITY(1,1) NOT NULL,
+    [DateTime] datetime  NOT NULL,
+    [Movies_Id] int  NOT NULL
+);
+GO
+
+-- Creating table 'LogErrorSet'
+CREATE TABLE [dbo].[LogErrorSet] (
+    [Id] int IDENTITY(1,1) NOT NULL,
+    [Type] nvarchar(max)  NOT NULL,
+    [Error] nvarchar(max)  NOT NULL,
+    [Description] nvarchar(max)  NOT NULL,
+    [Log_Id] int  NOT NULL
+);
+GO
+
+-- Creating table 'LogSuccessSet'
+CREATE TABLE [dbo].[LogSuccessSet] (
+    [Id] int IDENTITY(1,1) NOT NULL,
+    [Type] nvarchar(max)  NOT NULL,
+    [Status] nvarchar(max)  NOT NULL,
+    [Description] nvarchar(max)  NOT NULL,
+    [Log_Id] int  NOT NULL
+);
+GO
+
+-- Creating table 'LogInfoSet'
+CREATE TABLE [dbo].[LogInfoSet] (
+    [Id] int IDENTITY(1,1) NOT NULL,
+    [Type] nvarchar(max)  NOT NULL,
+    [Info] nvarchar(max)  NOT NULL,
+    [Description] nvarchar(max)  NOT NULL,
+    [Log_Id] int  NOT NULL
+);
+GO
+
 -- --------------------------------------------------
 -- Creating all PRIMARY KEY constraints
 -- --------------------------------------------------
@@ -239,6 +301,30 @@ GO
 -- Creating primary key on [Id] in table 'YTSgenresSet'
 ALTER TABLE [dbo].[YTSgenresSet]
 ADD CONSTRAINT [PK_YTSgenresSet]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
+-- Creating primary key on [Id] in table 'LogSet'
+ALTER TABLE [dbo].[LogSet]
+ADD CONSTRAINT [PK_LogSet]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
+-- Creating primary key on [Id] in table 'LogErrorSet'
+ALTER TABLE [dbo].[LogErrorSet]
+ADD CONSTRAINT [PK_LogErrorSet]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
+-- Creating primary key on [Id] in table 'LogSuccessSet'
+ALTER TABLE [dbo].[LogSuccessSet]
+ADD CONSTRAINT [PK_LogSuccessSet]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
+-- Creating primary key on [Id] in table 'LogInfoSet'
+ALTER TABLE [dbo].[LogInfoSet]
+ADD CONSTRAINT [PK_LogInfoSet]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
@@ -349,6 +435,66 @@ GO
 CREATE INDEX [IX_FK_YTSYTSgenres]
 ON [dbo].[YTSgenresSet]
     ([YTSYTSgenres_YTSgenres_id]);
+GO
+
+-- Creating foreign key on [Movies_Id] in table 'LogSet'
+ALTER TABLE [dbo].[LogSet]
+ADD CONSTRAINT [FK_MoviesLog]
+    FOREIGN KEY ([Movies_Id])
+    REFERENCES [dbo].[MoviesSet]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_MoviesLog'
+CREATE INDEX [IX_FK_MoviesLog]
+ON [dbo].[LogSet]
+    ([Movies_Id]);
+GO
+
+-- Creating foreign key on [Log_Id] in table 'LogErrorSet'
+ALTER TABLE [dbo].[LogErrorSet]
+ADD CONSTRAINT [FK_LogLogError]
+    FOREIGN KEY ([Log_Id])
+    REFERENCES [dbo].[LogSet]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_LogLogError'
+CREATE INDEX [IX_FK_LogLogError]
+ON [dbo].[LogErrorSet]
+    ([Log_Id]);
+GO
+
+-- Creating foreign key on [Log_Id] in table 'LogSuccessSet'
+ALTER TABLE [dbo].[LogSuccessSet]
+ADD CONSTRAINT [FK_LogLogSuccess]
+    FOREIGN KEY ([Log_Id])
+    REFERENCES [dbo].[LogSet]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_LogLogSuccess'
+CREATE INDEX [IX_FK_LogLogSuccess]
+ON [dbo].[LogSuccessSet]
+    ([Log_Id]);
+GO
+
+-- Creating foreign key on [Log_Id] in table 'LogInfoSet'
+ALTER TABLE [dbo].[LogInfoSet]
+ADD CONSTRAINT [FK_LogInfoLog]
+    FOREIGN KEY ([Log_Id])
+    REFERENCES [dbo].[LogSet]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_LogInfoLog'
+CREATE INDEX [IX_FK_LogInfoLog]
+ON [dbo].[LogInfoSet]
+    ([Log_Id]);
 GO
 
 -- --------------------------------------------------

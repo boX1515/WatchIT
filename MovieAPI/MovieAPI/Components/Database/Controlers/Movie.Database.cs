@@ -15,14 +15,21 @@ namespace MovieAPI.Components.Database.Controlers
             return await APIEntity.MoviesSet.Where(x => x.Guid == v && x.TMDB.imdb_id != null || x.YTS.title != null).ToListAsync();
         }
 
-        internal static async Task<List<Movies>> ByNameAsync(string v)
+        internal static async Task<Movies[]> ByNameAsync(string v)
         {
-            return await APIEntity.MoviesSet.Where(
+            /*return await APIEntity.MoviesSet.Where(
                 x => 
                     (x.Local.Name.ToLower() == v.ToLower() || x.Local.Name.ToLower().CompareTo(v.ToLower()) == 0) 
                     && x.TMDB.imdb_id != null || x.YTS.title != null
                 )
-                .ToListAsync();
+                .ToListAsync();*/
+
+            return await APIEntity.MoviesSet.Where(
+                x =>
+                    (x.Local.Name.ToLower() == v.ToLower())
+                    && x.TMDB.imdb_id != null || x.YTS.title != null
+                )
+                .ToArrayAsync();
         }
         
         internal static async Task<List<Movies>> ByYearAsync(string v)

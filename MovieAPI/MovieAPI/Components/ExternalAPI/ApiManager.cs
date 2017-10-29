@@ -80,9 +80,14 @@ namespace MovieAPI.Components.ExternalAPI
 
         internal async Task WriteLog(Movies data,Parser.LogStatus status)
         {
-            await new Parser().Write(
-                data, string.Format("Movie {0} object was built ", data.Local.Name), status
-                );
+            await Parser.WriteMovieInfo(new LogInfo()
+            {
+                Description = string.Format("Movie {0} object was built ", data.Local.Name),
+                Info = "Movie was built",
+                Type = "Building movie"
+            },
+            data);
+                
         }
     }
 

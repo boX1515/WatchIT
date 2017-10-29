@@ -5,12 +5,12 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="6a68cfc69d6e43c0be722525a74330c5" Name="Diagram1" DisplayType="false" ShowGrid="true" ZoomLevel="74" >
-        <EntityTypeShape EntityType="APIEntityModel.TMDB" Width="1.5" PointX="3.125" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="APIEntityModel.TMDB" Width="1.5" PointX="3.125" PointY="0.625" IsExpanded="true" />
         <EntityTypeShape EntityType="APIEntityModel.YTS" Width="1.5" PointX="7.75" PointY="0.625" />
         <EntityTypeShape EntityType="APIEntityModel.Movies" Width="1.5" PointX="6.875" PointY="7.875" />
-        <EntityTypeShape EntityType="APIEntityModel.Local" Width="1.5" PointX="12.875" PointY="0.875" />
+        <EntityTypeShape EntityType="APIEntityModel.Local" Width="1.5" PointX="12.875" PointY="0.625" />
         <EntityTypeShape EntityType="APIEntityModel.torrents" Width="1.5" PointX="9.75" PointY="0.625" />
-        <EntityTypeShape EntityType="APIEntityModel.TMDBgenres" Width="1.5" PointX="0.75" PointY="0.5" />
+        <EntityTypeShape EntityType="APIEntityModel.TMDBgenres" Width="1.5" PointX="0.75" PointY="0.625" />
         <AssociationConnector Association="APIEntityModel.MoviesLocal" />
         <AssociationConnector Association="APIEntityModel.MoviesTMDB" />
         <AssociationConnector Association="APIEntityModel.MoviesYTS" />
@@ -20,6 +20,14 @@
         <AssociationConnector Association="APIEntityModel.TMDBTMDBgenres" />
         <EntityTypeShape EntityType="APIEntityModel.YTSgenres" Width="1.5" PointX="5.25" PointY="0.625" />
         <AssociationConnector Association="APIEntityModel.YTSYTSgenres" />
+        <EntityTypeShape EntityType="APIEntityModel.Log" Width="1.5" PointX="4.125" PointY="9.375" />
+        <AssociationConnector Association="APIEntityModel.MoviesLog" />
+        <EntityTypeShape EntityType="APIEntityModel.LogError" Width="1.5" PointX="0.625" PointY="9.375" />
+        <EntityTypeShape EntityType="APIEntityModel.LogSuccess" Width="1.5" PointX="0.625" PointY="11.625" />
+        <AssociationConnector Association="APIEntityModel.LogLogError" />
+        <AssociationConnector Association="APIEntityModel.LogLogSuccess" />
+        <EntityTypeShape EntityType="APIEntityModel.LogInfo" Width="1.5" PointX="0.625" PointY="13.875" />
+        <AssociationConnector Association="APIEntityModel.LogInfoLog" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -141,6 +141,18 @@
     <Compile Include="Local.cs">
       <DependentUpon>APIEntityModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Log.cs">
+      <DependentUpon>APIEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LogError.cs">
+      <DependentUpon>APIEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LogInfo.cs">
+      <DependentUpon>APIEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LogSuccess.cs">
+      <DependentUpon>APIEntityModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\MovieModel.cs" />
     <Compile Include="Movies.cs">
       <DependentUpon>APIEntityModel.tt</DependentUpon>

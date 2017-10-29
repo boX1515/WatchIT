@@ -33,5 +33,9 @@ namespace MovieAPI
         public virtual DbSet<YTS> YTSSet { get; set; }
         public virtual DbSet<production_companies> production_companiesSet { get; set; }
         public virtual DbSet<YTSgenres> YTSgenresSet { get; set; }
+        public virtual DbSet<Log> LogSet { get; set; }
+        public virtual DbSet<LogError> LogErrorSet { get; set; }
+        public virtual DbSet<LogSuccess> LogSuccessSet { get; set; }
+        public virtual DbSet<LogInfo> LogInfoSet { get; set; }
     }
 }

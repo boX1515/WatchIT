@@ -37,6 +37,26 @@
       <End Role="YTS" EntitySet="YTSSet" />
       <End Role="YTSgenres" EntitySet="YTSgenresSet" />
     </AssociationSet>
+    <EntitySet Name="LogSet" EntityType="APIEntityModel.Log" />
+    <AssociationSet Name="MoviesLog" Association="APIEntityModel.MoviesLog">
+      <End Role="Movies" EntitySet="MoviesSet" />
+      <End Role="Log" EntitySet="LogSet" />
+    </AssociationSet>
+    <EntitySet Name="LogErrorSet" EntityType="APIEntityModel.LogError" />
+    <EntitySet Name="LogSuccessSet" EntityType="APIEntityModel.LogSuccess" />
+    <AssociationSet Name="LogLogError" Association="APIEntityModel.LogLogError">
+      <End Role="Log" EntitySet="LogSet" />
+      <End Role="LogError" EntitySet="LogErrorSet" />
+    </AssociationSet>
+    <AssociationSet Name="LogLogSuccess" Association="APIEntityModel.LogLogSuccess">
+      <End Role="Log" EntitySet="LogSet" />
+      <End Role="LogSuccess" EntitySet="LogSuccessSet" />
+    </AssociationSet>
+    <EntitySet Name="LogInfoSet" EntityType="APIEntityModel.LogInfo" />
+    <AssociationSet Name="LogInfoLog" Association="APIEntityModel.LogInfoLog">
+      <End Role="LogInfo" EntitySet="LogInfoSet" />
+      <End Role="Log" EntitySet="LogSet" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="TMDB">
     <Key>
@@ -102,6 +122,7 @@
     <NavigationProperty Name="Local" Relationship="APIEntityModel.MoviesLocal" FromRole="Movies" ToRole="Local" />
     <NavigationProperty Name="TMDB" Relationship="APIEntityModel.MoviesTMDB" FromRole="Movies" ToRole="TMDB" />
     <NavigationProperty Name="YTS" Relationship="APIEntityModel.MoviesYTS" FromRole="Movies" ToRole="YTS" />
+    <NavigationProperty Name="Log" Relationship="APIEntityModel.MoviesLog" FromRole="Movies" ToRole="Log" />
   </EntityType>
   <EntityType Name="Local">
     <Key>
@@ -183,5 +204,62 @@
   <Association Name="YTSYTSgenres">
     <End Type="APIEntityModel.YTS" Role="YTS" Multiplicity="1" />
     <End Type="APIEntityModel.YTSgenres" Role="YTSgenres" Multiplicity="*" />
+  </Association>
+  <EntityType Name="Log">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="Movies" Relationship="APIEntityModel.MoviesLog" FromRole="Log" ToRole="Movies" />
+    <Property Name="DateTime" Type="DateTime" Nullable="false" />
+    <NavigationProperty Name="LogError" Relationship="APIEntityModel.LogLogError" FromRole="Log" ToRole="LogError" />
+    <NavigationProperty Name="LogSuccess" Relationship="APIEntityModel.LogLogSuccess" FromRole="Log" ToRole="LogSuccess" />
+    <NavigationProperty Name="LogInfo" Relationship="APIEntityModel.LogInfoLog" FromRole="Log" ToRole="LogInfo" />
+  </EntityType>
+  <Association Name="MoviesLog">
+    <End Type="APIEntityModel.Movies" Role="Movies" Multiplicity="1" />
+    <End Type="APIEntityModel.Log" Role="Log" Multiplicity="*" />
+  </Association>
+  <EntityType Name="LogError">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Type" Type="String" Nullable="false" />
+    <Property Name="Error" Type="String" Nullable="false" />
+    <Property Name="Description" Type="String" Nullable="false" />
+    <NavigationProperty Name="Log" Relationship="APIEntityModel.LogLogError" FromRole="LogError" ToRole="Log" />
+  </EntityType>
+  <EntityType Name="LogSuccess">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Type" Type="String" Nullable="false" />
+    <Property Name="Status" Type="String" Nullable="false" />
+    <Property Name="Description" Type="String" Nullable="false" />
+    <NavigationProperty Name="Log" Relationship="APIEntityModel.LogLogSuccess" FromRole="LogSuccess" ToRole="Log" />
+  </EntityType>
+  <Association Name="LogLogError">
+    <End Type="APIEntityModel.Log" Role="Log" Multiplicity="1" />
+    <End Type="APIEntityModel.LogError" Role="LogError" Multiplicity="0..1" />
+  </Association>
+  <Association Name="LogLogSuccess">
+    <End Type="APIEntityModel.Log" Role="Log" Multiplicity="1" />
+    <End Type="APIEntityModel.LogSuccess" Role="LogSuccess" Multiplicity="0..1" />
+  </Association>
+  <EntityType Name="LogInfo">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="Log" Relationship="APIEntityModel.LogInfoLog" FromRole="LogInfo" ToRole="Log" />
+    <Property Name="Type" Type="String" Nullable="false" />
+    <Property Name="Info" Type="String" Nullable="false" />
+    <Property Name="Description" Type="String" Nullable="false" />
+  </EntityType>
+  <Association Name="LogInfoLog">
+    <End Type="APIEntityModel.LogInfo" Role="LogInfo" Multiplicity="0..1" />
+    <End Type="APIEntityModel.Log" Role="Log" Multiplicity="1" />
   </Association>
 </Schema>
